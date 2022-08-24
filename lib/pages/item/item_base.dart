@@ -45,7 +45,7 @@ class TagListViewBox extends StatelessWidget {
   }
 }
 
-class TagWaterfallFlowViewBox extends StatelessWidget {
+class TagWaterfallFlowViewBox extends StatefulWidget {
   const TagWaterfallFlowViewBox(
       {Key? key,
       this.simpleTags,
@@ -58,13 +58,25 @@ class TagWaterfallFlowViewBox extends StatelessWidget {
   final bool splitFrame;
 
   @override
+  State<TagWaterfallFlowViewBox> createState() =>
+      _TagWaterfallFlowViewBoxState();
+}
+
+class _TagWaterfallFlowViewBoxState extends State<TagWaterfallFlowViewBox> {
+  ScrollController controller = ScrollController();
+  @override
+  void dispose() {
+    controller.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
-    ScrollController controller = ScrollController();
     final EhConfigService _ehConfigService = Get.find();
 
     return Obx(() {
-      List<SimpleTag>? _simpleTags =
-          getLimitSimpleTags(simpleTags, _ehConfigService.listViewTagLimit);
+      List<SimpleTag>? _simpleTags = getLimitSimpleTags(
+          widget.simpleTags, _ehConfigService.listViewTagLimit);
 
       if (_simpleTags == null || _simpleTags.isEmpty) {
         return const SizedBox.shrink();
@@ -73,14 +85,14 @@ class TagWaterfallFlowViewBox extends StatelessWidget {
       return ClipRRect(
         borderRadius: BorderRadius.circular(4),
         child: SizedBox(
-          height: crossAxisCount * 22 - 4,
+          height: widget.crossAxisCount * 22 - 4,
           child: WaterfallFlow.builder(
             shrinkWrap: true,
             controller: controller,
             primary: false,
             scrollDirection: Axis.horizontal,
             gridDelegate: SliverWaterfallFlowDelegateWithFixedCrossAxisCount(
-              crossAxisCount: crossAxisCount,
+              crossAxisCount: widget.crossAxisCount,
               crossAxisSpacing: 4.0,
               mainAxisSpacing: 4.0,
             ),
@@ -99,7 +111,7 @@ class TagWaterfallFlowViewBox extends StatelessWidget {
                         ColorsUtil.getTagColor(_simpleTag.backgrondColor),
                   );
 
-                  if (splitFrame) {
+                  if (widget.splitFrame) {
                     _item = FrameSeparateWidget(
                       placeHolder: const TagItem(text: '..'),
                       index: -1,

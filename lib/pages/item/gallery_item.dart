@@ -98,49 +98,50 @@ class GalleryItemWidget extends StatelessWidget {
           ),
           padding: const EdgeInsets.only(right: kPaddingHorizontal),
           margin: const EdgeInsets.fromLTRB(10, 8, 10, 4),
-          child: IntrinsicHeight(
-            child: Row(
-              children: <Widget>[
-                // 封面图片
-                Column(
-                  children: [
-                    Expanded(
-                      child: _CoverImage(
-                        galleryProviderController: itemController,
-                        tabTag: tabTag,
-                        cardType: true,
-                      ),
+          child: Row(
+            children: <Widget>[
+              // 封面图片
+              Column(
+                children: [
+                  Expanded(
+                    child: _CoverImage(
+                      galleryProviderController: itemController,
+                      tabTag: tabTag,
+                      cardType: true,
                     ),
-                  ],
-                ),
-                const SizedBox(
-                  width: 6,
-                ),
-                // 右侧信息
-                Expanded(
-                  child: Container(
-                    padding: const EdgeInsets.symmetric(vertical: 8),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: <Widget>[
-                        // 标题 provider
-                        _Title(
-                          galleryItemController: itemController,
-                        ),
-                        const SizedBox(height: 6),
-                        // 上传者 或 收藏备注
-                        Text(
-                          (galleryProvider.uploader?.isNotEmpty ?? false)
-                              ? galleryProvider.uploader ?? ''
-                              : (galleryProvider.favNote?.isNotEmpty ?? false)
-                                  ? 'Note: ${galleryProvider.favNote ?? ''}'
-                                  : '',
-                          style: const TextStyle(
-                              fontSize: 12, color: CupertinoColors.systemGrey),
-                        ),
-                        const Spacer(),
-                        const SizedBox(height: 6),
-                        // 标签
+                  ),
+                ],
+              ),
+              const SizedBox(
+                width: 6,
+              ),
+              // 右侧信息
+              Expanded(
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 8),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: <Widget>[
+                      // 标题 provider
+                      _Title(
+                        galleryItemController: itemController,
+                      ),
+                      const SizedBox(height: 6),
+                      // 上传者 或 收藏备注
+                      Text(
+                        (galleryProvider.uploader?.isNotEmpty ?? false)
+                            ? galleryProvider.uploader ?? ''
+                            : (galleryProvider.favNote?.isNotEmpty ?? false)
+                                ? 'Note: ${galleryProvider.favNote ?? ''}'
+                                : '',
+                        style: const TextStyle(
+                            fontSize: 12, color: CupertinoColors.systemGrey),
+                      ),
+                      const Spacer(),
+                      const SizedBox(height: 6),
+                      // 标签
+                      // TODO: 2022/8/25 ipcjs 这玩意特别卡
+                      if (true)
                         if (_ehConfigService.fixedHeightOfListItems)
                           TagWaterfallFlowViewBox(
                             simpleTags: galleryProvider.simpleTags,
@@ -150,63 +151,62 @@ class GalleryItemWidget extends StatelessWidget {
                           TagBox(
                             simpleTags: galleryProvider.simpleTags ?? [],
                           ),
-                        const SizedBox(height: 6),
-                        const Spacer(),
-                        // 评分行
-                        Row(
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          mainAxisSize: MainAxisSize.min,
-                          children: <Widget>[
-                            // 评分
-                            Expanded(
-                              child: Obx(() {
-                                return _Rating(
-                                  rating: itemController.rating,
-                                  ratingFallBack: itemController.ratingFallBack,
-                                  colorRating: itemController.colorRating,
-                                );
-                              }),
-                            ),
-                            // 收藏图标
-                            Obx(() {
-                              logger.v(
-                                  '${itemController.galleryProvider.gid} favCat ${itemController.favCat}');
-                              return _FavcatIcon(
-                                favCat: itemController.favCat,
+                      const SizedBox(height: 6),
+                      const Spacer(),
+                      // 评分行
+                      Row(
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        mainAxisSize: MainAxisSize.min,
+                        children: <Widget>[
+                          // 评分
+                          Expanded(
+                            child: Obx(() {
+                              return _Rating(
+                                rating: itemController.rating,
+                                ratingFallBack: itemController.ratingFallBack,
+                                colorRating: itemController.colorRating,
                               );
                             }),
-                            // 图片数量
-                            _Filecont(
-                              translated: galleryProvider.translated,
-                              filecount: galleryProvider.filecount,
-                            ),
-                          ],
-                        ),
-                        const SizedBox(
-                          height: 6,
-                        ),
-                        // 类型和时间
-                        Row(
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          children: <Widget>[
-                            // 类型
-                            _Category(
-                              category: galleryProvider.category,
-                            ),
+                          ),
+                          // 收藏图标
+                          Obx(() {
+                            logger.v(
+                                '${itemController.galleryProvider.gid} favCat ${itemController.favCat}');
+                            return _FavcatIcon(
+                              favCat: itemController.favCat,
+                            );
+                          }),
+                          // 图片数量
+                          _Filecont(
+                            translated: galleryProvider.translated,
+                            filecount: galleryProvider.filecount,
+                          ),
+                        ],
+                      ),
+                      const SizedBox(
+                        height: 6,
+                      ),
+                      // 类型和时间
+                      Row(
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: <Widget>[
+                          // 类型
+                          _Category(
+                            category: galleryProvider.category,
+                          ),
 
-                            // 上传时间
-                            Expanded(
-                                child: _PostTime(
-                              postTime: galleryProvider.postTime,
-                            )),
-                          ],
-                        ),
-                      ],
-                    ),
+                          // 上传时间
+                          Expanded(
+                              child: _PostTime(
+                            postTime: galleryProvider.postTime,
+                          )),
+                        ],
+                      ),
+                    ],
                   ),
                 ),
-              ],
-            ),
+              ),
+            ],
           ),
         );
       },
@@ -352,10 +352,7 @@ class _CoverImage extends StatelessWidget {
               enabled: !isLayoutLarge,
               child: Hero(
                 tag: '${_item.gid}_cover_$tabTag',
-                child: ClipRRect(
-                  borderRadius: BorderRadius.circular(0),
-                  child: image,
-                ),
+                child: image,
               ),
             ),
           ),
@@ -369,7 +366,8 @@ class _CoverImage extends StatelessWidget {
           bottomLeft: Radius.circular(kCardRadius),
         ),
         // borderRadius: BorderRadius.circular(kCardRadius),
-        child: Container(
+        child: SizedBox(
+          // TODO: 2022/8/25 ipcjs 图片对帧率的影响似乎还好
           child: image,
           height: coverImageHeigth,
           width: coverImageWidth,
@@ -427,7 +425,7 @@ class _Filecont extends StatelessWidget {
           size: 13,
           color: CupertinoColors.systemGrey,
         ),
-        Container(
+        Padding(
           padding: const EdgeInsets.only(left: 2),
           child: Text(
             filecount ?? '',
@@ -446,18 +444,16 @@ class _FavcatIcon extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: favCat.isNotEmpty
-          ? Container(
-              padding: const EdgeInsets.only(bottom: 2, right: 2, left: 2),
-              child: Icon(
-                FontAwesomeIcons.solidHeart,
-                size: 12,
-                color: ThemeColors.favColor[favCat],
-              ),
-            )
-          : Container(),
-    );
+    return favCat.isNotEmpty
+        ? Container(
+            padding: const EdgeInsets.only(bottom: 2, right: 2, left: 2),
+            child: Icon(
+              FontAwesomeIcons.solidHeart,
+              size: 12,
+              color: ThemeColors.favColor[favCat],
+            ),
+          )
+        : const SizedBox();
   }
 }
 
@@ -526,18 +522,18 @@ class _Category extends StatelessWidget {
             CupertinoColors.systemBackground,
         Get.context!);
 
-    return ClipRRect(
-      borderRadius: BorderRadius.circular(4),
-      child: Container(
-        padding: const EdgeInsets.fromLTRB(6, 3, 6, 3),
+    return Container(
+      padding: const EdgeInsets.fromLTRB(6, 3, 6, 3),
+      decoration: BoxDecoration(
         color: _colorCategory,
-        child: Text(
-          category ?? '',
-          style: const TextStyle(
-            fontSize: 14,
-            height: 1,
-            color: CupertinoColors.white,
-          ),
+        borderRadius: BorderRadius.circular(4),
+      ),
+      child: Text(
+        category ?? '',
+        style: const TextStyle(
+          fontSize: 14,
+          height: 1,
+          color: CupertinoColors.white,
         ),
       ),
     );
@@ -558,26 +554,26 @@ class TagItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ClipRRect(
-      borderRadius: BorderRadius.circular(4),
-      child: Container(
-        // height: 18,
-        padding: const EdgeInsets.fromLTRB(4, 2, 4, 2),
+    return Container(
+      // height: 18,
+      padding: const EdgeInsets.fromLTRB(4, 2, 4, 2),
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(4),
         color: backgrondColor ??
             CupertinoDynamicColor.resolve(ThemeColors.tagBackground, context),
-        child: Text(
-          text ?? '',
-          textAlign: TextAlign.center,
-          style: TextStyle(
-            fontSize: 12,
-            height: 1,
-            fontWeight:
-                backgrondColor == null ? FontWeight.w400 : FontWeight.w500,
-            color: color ??
-                CupertinoDynamicColor.resolve(ThemeColors.tagText, context),
-          ),
-          strutStyle: const StrutStyle(height: 1),
+      ),
+      child: Text(
+        text ?? '',
+        textAlign: TextAlign.center,
+        style: TextStyle(
+          fontSize: 12,
+          height: 1,
+          fontWeight:
+              backgrondColor == null ? FontWeight.w400 : FontWeight.w500,
+          color: color ??
+              CupertinoDynamicColor.resolve(ThemeColors.tagText, context),
         ),
+        strutStyle: const StrutStyle(height: 1),
       ),
     );
   }
