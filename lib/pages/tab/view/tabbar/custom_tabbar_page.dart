@@ -130,6 +130,7 @@ class _CustomTabbarListState extends State<CustomTabbarList> {
             child: getNavigationBar(context),
           ),
           Stack(
+            clipBehavior: Clip.none,
             // fit: StackFit.expand,
             alignment: Alignment.topCenter,
             children: [

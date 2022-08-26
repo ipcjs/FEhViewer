@@ -432,6 +432,7 @@ Widget buildGallerySliverListView(
         );
       },
       onItemKey: (index) => galleryProviders[index].gid ?? '',
+      preferItemHeight: kFixedHeight,
       childCount: galleryProviders.length,
       keepPosition: true,
     ),

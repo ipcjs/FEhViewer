@@ -11,6 +11,7 @@ import 'package:fehviewer/utils/logger.dart';
 import 'package:fehviewer/utils/utility.dart';
 import 'package:fehviewer/widget/blur_image.dart';
 import 'package:fehviewer/widget/eh_network_image.dart';
+import 'package:fehviewer/widget/intrinsic_size.dart';
 import 'package:fehviewer/widget/rating_bar.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -45,6 +46,7 @@ class GalleryItemWidget extends StatelessWidget {
     return GestureDetector(
       child: Center(
         child: Stack(
+          clipBehavior: Clip.none,
           children: [
             _buildCardItem(),
             if (Get.find<EhConfigService>().debugMode)
@@ -98,7 +100,9 @@ class GalleryItemWidget extends StatelessWidget {
           ),
           padding: const EdgeInsets.only(right: kPaddingHorizontal),
           margin: const EdgeInsets.fromLTRB(10, 8, 10, 4),
-          child: IntrinsicHeight(
+          child: IntrinsicSize(
+            height: !_ehConfigService.fixedHeightOfListItems,
+            width: false,
             child: Row(
               children: <Widget>[
                 // 封面图片
@@ -118,7 +122,7 @@ class GalleryItemWidget extends StatelessWidget {
                 ),
                 // 右侧信息
                 Expanded(
-                  child: Container(
+                  child: Padding(
                     padding: const EdgeInsets.symmetric(vertical: 8),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
@@ -340,6 +344,7 @@ class _CoverImage extends StatelessWidget {
     } else {
       // 卡片样式
       image = Stack(
+        clipBehavior: Clip.none,
         fit: StackFit.passthrough,
         children: [
           Obx(() {
@@ -353,10 +358,7 @@ class _CoverImage extends StatelessWidget {
               enabled: !isLayoutLarge,
               child: Hero(
                 tag: '${_item.gid}_cover_$tabTag',
-                child: ClipRRect(
-                  borderRadius: BorderRadius.circular(0),
-                  child: image,
-                ),
+                child: image,
               ),
             ),
           ),
@@ -370,7 +372,7 @@ class _CoverImage extends StatelessWidget {
           bottomLeft: Radius.circular(kCardRadius),
         ),
         // borderRadius: BorderRadius.circular(kCardRadius),
-        child: Container(
+        child: SizedBox(
           child: image,
           height: coverImageHeigth,
           width: coverImageWidth,
@@ -428,7 +430,7 @@ class _Filecont extends StatelessWidget {
           size: 13,
           color: CupertinoColors.systemGrey,
         ),
-        Container(
+        Padding(
           padding: const EdgeInsets.only(left: 2),
           child: Text(
             filecount ?? '',
@@ -447,18 +449,16 @@ class _FavcatIcon extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: favCat.isNotEmpty
-          ? Container(
-              padding: const EdgeInsets.only(bottom: 2, right: 2, left: 2),
-              child: Icon(
-                FontAwesomeIcons.solidHeart,
-                size: 12,
-                color: ThemeColors.favColor[favCat],
-              ),
-            )
-          : Container(),
-    );
+    return favCat.isNotEmpty
+        ? Container(
+            padding: const EdgeInsets.only(bottom: 2, right: 2, left: 2),
+            child: Icon(
+              FontAwesomeIcons.solidHeart,
+              size: 12,
+              color: ThemeColors.favColor[favCat],
+            ),
+          )
+        : const SizedBox();
   }
 }
 
@@ -527,18 +527,18 @@ class _Category extends StatelessWidget {
             CupertinoColors.systemBackground,
         Get.context!);
 
-    return ClipRRect(
-      borderRadius: BorderRadius.circular(4),
-      child: Container(
-        padding: const EdgeInsets.fromLTRB(6, 3, 6, 3),
+    return Container(
+      padding: const EdgeInsets.fromLTRB(6, 3, 6, 3),
+      decoration: BoxDecoration(
         color: _colorCategory,
-        child: Text(
-          category ?? '',
-          style: const TextStyle(
-            fontSize: 14,
-            height: 1,
-            color: CupertinoColors.white,
-          ),
+        borderRadius: BorderRadius.circular(4),
+      ),
+      child: Text(
+        category ?? '',
+        style: const TextStyle(
+          fontSize: 14,
+          height: 1,
+          color: CupertinoColors.white,
         ),
       ),
     );
@@ -559,26 +559,26 @@ class TagItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ClipRRect(
-      borderRadius: BorderRadius.circular(4),
-      child: Container(
-        // height: 18,
-        padding: const EdgeInsets.fromLTRB(4, 2, 4, 2),
+    return Container(
+      // height: 18,
+      padding: const EdgeInsets.fromLTRB(4, 2, 4, 2),
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(4),
         color: backgrondColor ??
             CupertinoDynamicColor.resolve(ThemeColors.tagBackground, context),
-        child: Text(
-          text ?? '',
-          textAlign: TextAlign.center,
-          style: TextStyle(
-            fontSize: 12,
-            height: 1,
-            fontWeight:
-                backgrondColor == null ? FontWeight.w400 : FontWeight.w500,
-            color: color ??
-                CupertinoDynamicColor.resolve(ThemeColors.tagText, context),
-          ),
-          strutStyle: const StrutStyle(height: 1),
+      ),
+      child: Text(
+        text ?? '',
+        textAlign: TextAlign.center,
+        style: TextStyle(
+          fontSize: 12,
+          height: 1,
+          fontWeight:
+              backgrondColor == null ? FontWeight.w400 : FontWeight.w500,
+          color: color ??
+              CupertinoDynamicColor.resolve(ThemeColors.tagText, context),
         ),
+        strutStyle: const StrutStyle(height: 1),
       ),
     );
   }

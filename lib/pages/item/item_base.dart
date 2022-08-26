@@ -59,7 +59,6 @@ class TagWaterfallFlowViewBox extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    ScrollController controller = ScrollController();
     final EhConfigService _ehConfigService = Get.find();
 
     return Obx(() {
@@ -75,9 +74,12 @@ class TagWaterfallFlowViewBox extends StatelessWidget {
         child: SizedBox(
           height: crossAxisCount * 22 - 4,
           child: WaterfallFlow.builder(
+            clipBehavior: Clip.none,
             shrinkWrap: true,
-            controller: controller,
             primary: false,
+            addAutomaticKeepAlives: false,
+            addSemanticIndexes: false,
+            addRepaintBoundaries: false,
             scrollDirection: Axis.horizontal,
             gridDelegate: SliverWaterfallFlowDelegateWithFixedCrossAxisCount(
               crossAxisCount: crossAxisCount,
