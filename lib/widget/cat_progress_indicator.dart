@@ -46,7 +46,7 @@ class CatProgressIndicatorPainter extends CustomPainter {
 
     final Path circlePath = Path();
     circlePath.addOval(
-        Rect.fromCenter(center: Offset(0, 0), width: 100, height: 100));
+        Rect.fromCenter(center: const Offset(0, 0), width: 100, height: 100));
 
     canvas.drawPath(circlePath, paint);
   }

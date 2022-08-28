@@ -123,7 +123,7 @@ class SearchImagePage extends GetView<SearchImageController> {
                     color: CupertinoDynamicColor.resolve(
                         CupertinoColors.systemGrey, context),
                   ),
-                  Text(''),
+                  const Text(''),
                 ],
               ),
             ).autoCompressKeyboard(context),
@@ -179,7 +179,7 @@ class ImagePersistentHeaderDelegate extends SliverPersistentHeaderDelegate {
     final paddingTop = context.mediaQueryPadding.top;
 
     return Container(
-      decoration: BoxDecoration(
+      decoration: const BoxDecoration(
         border: _kDefaultNavBarBorder,
       ),
       padding: EdgeInsets.only(top: paddingTop),
@@ -222,7 +222,7 @@ class ImagePersistentHeaderDelegate extends SliverPersistentHeaderDelegate {
             ),
           ),
           Container(
-            constraints: BoxConstraints(maxHeight: 80),
+            constraints: const BoxConstraints(maxHeight: 80),
             child: CupertinoButton(
               padding: const EdgeInsets.all(0.0),
               child: Container(

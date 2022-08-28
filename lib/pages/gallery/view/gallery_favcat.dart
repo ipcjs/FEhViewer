@@ -1,7 +1,6 @@
 import 'package:fehviewer/common/service/controller_tag_service.dart';
 import 'package:fehviewer/const/theme_colors.dart';
 import 'package:fehviewer/fehviewer.dart';
-import 'package:fehviewer/generated/l10n.dart';
 import 'package:fehviewer/pages/gallery/controller/gallery_fav_controller.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -54,10 +53,10 @@ class GalleryFavButton extends StatelessWidget {
         Container(
           height: 14,
           padding: const EdgeInsets.only(right: 4),
-          child: Text(
+          child: const Text(
             // L10n.of(context).processing,
             '',
-            style: const TextStyle(
+            style: TextStyle(
               fontSize: 11,
             ),
           ),

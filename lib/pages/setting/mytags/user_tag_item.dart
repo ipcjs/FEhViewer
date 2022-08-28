@@ -151,7 +151,8 @@ class _UserTagItemState extends State<UserTagItem> {
                   ),
                 if (widget.addItem)
                   Container(
-                    child: Icon(FontAwesomeIcons.tag).paddingOnly(right: 12),
+                    child:
+                        const Icon(FontAwesomeIcons.tag).paddingOnly(right: 12),
                   ),
                 Expanded(
                   child: Column(

@@ -694,7 +694,7 @@ class _GallerySearchPageState extends State<GallerySearchPage> {
                   color: CupertinoDynamicColor.resolve(
                       CupertinoColors.systemGrey, context),
                 ),
-                Text(''),
+                const Text(''),
               ],
             ),
           ).autoCompressKeyboard(context),

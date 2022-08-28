@@ -223,7 +223,7 @@ class _ToplistTabState extends State<ToplistTab> {
                     color: CupertinoDynamicColor.resolve(
                         CupertinoColors.systemGrey, context),
                   ),
-                  Text(''),
+                  const Text(''),
                 ],
               ),
             ).autoCompressKeyboard(context),

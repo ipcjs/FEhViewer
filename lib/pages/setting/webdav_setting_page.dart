@@ -16,7 +16,7 @@ class WebDavSetting extends GetView<WebdavController> {
 
   @override
   Widget build(BuildContext context) {
-    final String _title = 'WebDAV';
+    const String _title = 'WebDAV';
     return Obx(() {
       return CupertinoPageScaffold(
         backgroundColor: !ehTheme.isDarkMode
@@ -24,7 +24,7 @@ class WebDavSetting extends GetView<WebdavController> {
             : null,
         navigationBar: CupertinoNavigationBar(
           padding: const EdgeInsetsDirectional.only(end: 5),
-          middle: Text(_title),
+          middle: const Text(_title),
           trailing: _buildListBtns(context),
         ),
         child: Obx(() {
@@ -80,7 +80,7 @@ class WebDavSettingView extends GetView<WebdavController> {
               context: context,
               builder: (context) {
                 return CupertinoAlertDialog(
-                  title: Text('Logout?'),
+                  title: const Text('Logout?'),
                   actions: <Widget>[
                     CupertinoDialogAction(
                       child: Text(L10n.of(context).cancel),

@@ -1,12 +1,13 @@
 library flutter_egg;
 
+import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 
 typedef OnTapCallBack = void Function(int tapNum, int neededNum);
 
 /// 隐藏彩蛋,多次点击后触发
 class Egg extends StatefulWidget {
-  Egg({
+  const Egg({
     this.child,
     this.neededNum = 5,
     this.interval = const Duration(seconds: 1),
@@ -41,7 +42,7 @@ class _EggState extends State<Egg> {
   }
 
   void handleOnTap() {
-    DateTime? lastPressedAt = tapTimeList.length > 0 ? tapTimeList.last : null;
+    DateTime? lastPressedAt = tapTimeList.lastOrNull;
     final DateTime now = DateTime.now();
 
     // 不超过点击间隔,tapTimeList 添加当前点击时刻

@@ -51,7 +51,7 @@ class UserController extends ProfileController {
       context: context,
       builder: (BuildContext context) {
         return CupertinoAlertDialog(
-          title: Text('Logout'),
+          title: const Text('Logout'),
           actions: <Widget>[
             CupertinoDialogAction(
               child: Text(L10n.of(context).cancel),

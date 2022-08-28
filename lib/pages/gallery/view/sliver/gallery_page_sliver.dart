@@ -332,7 +332,7 @@ class _GallerySliverPageState extends State<GallerySliverPage> {
         );
 
         Widget buttons = Row(
-          key: ValueKey('buttons'),
+          key: const ValueKey('buttons'),
           mainAxisSize: MainAxisSize.min,
           children: [
             CupertinoButton(
@@ -368,9 +368,9 @@ class _GallerySliverPageState extends State<GallerySliverPage> {
         Widget trailingSwitcher = TrailingSwitcher(
           hideNavigationBtn: pageState.hideNavigationBtn,
           firstChild: buttons.paddingOnly(right: 4),
-          secondChild:
-              ReadButton(key: ValueKey('ReadButton'), gid: provider?.gid ?? '0')
-                  .paddingOnly(right: 4),
+          secondChild: ReadButton(
+                  key: const ValueKey('ReadButton'), gid: provider?.gid ?? '0')
+              .paddingOnly(right: 4),
           duration: 3000.milliseconds,
         );
 

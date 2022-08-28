@@ -190,22 +190,22 @@ class TabHomeLarge extends GetView<TabHomeController> {
                           case EHRoutes.customHosts:
                             return GetPageRoute(
                               settings: settings,
-                              page: () => CustomHostsPage(),
+                              page: () => const CustomHostsPage(),
                             );
                           case EHRoutes.webDavSetting:
                             return GetPageRoute(
                               settings: settings,
-                              page: () => WebDavSetting(),
+                              page: () => const WebDavSetting(),
                             );
                           case EHRoutes.tagTranslat:
                             return GetPageRoute(
                               settings: settings,
-                              page: () => TagTranslatePage(),
+                              page: () => const TagTranslatePage(),
                             );
                           case EHRoutes.avatarSetting:
                             return GetPageRoute(
                               settings: settings,
-                              page: () => AvatarSettingPage(),
+                              page: () => const AvatarSettingPage(),
                             );
                           case EHRoutes.logfile:
                             return GetPageRoute(

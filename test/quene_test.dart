@@ -28,12 +28,12 @@ void main() {
 
     cancelToken.cancel();
 
-    await Future.delayed(Duration(seconds: 15));
+    await Future.delayed(const Duration(seconds: 15));
   });
 }
 
 Future _doTask({String? name}) async {
-  await Future.delayed(Duration(seconds: 2));
+  await Future.delayed(const Duration(seconds: 2));
   print('触发执行 $name');
   return;
 }

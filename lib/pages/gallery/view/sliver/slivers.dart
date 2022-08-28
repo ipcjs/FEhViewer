@@ -551,7 +551,7 @@ class ChapterItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final _pageStyle = TextStyle(
+    const _pageStyle = TextStyle(
       fontSize: 12,
       fontWeight: FontWeight.bold,
     );
@@ -574,7 +574,7 @@ class ChapterItem extends StatelessWidget {
               CupertinoColors.systemGrey6, context),
           borderRadius: BorderRadius.circular(10),
         ),
-        constraints: BoxConstraints(
+        constraints: const BoxConstraints(
             // maxWidth: context.width-16,
             // minHeight: 32,
             ),
@@ -613,7 +613,7 @@ class ChapterItemFlex extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final _pageStyle = TextStyle(
+    const _pageStyle = TextStyle(
       fontSize: 11,
       fontWeight: FontWeight.w500,
     );

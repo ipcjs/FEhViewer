@@ -29,7 +29,7 @@ class LogPage extends StatelessWidget {
             : null,
         navigationBar: CupertinoNavigationBar(
           padding: const EdgeInsetsDirectional.only(start: 0),
-          middle: Text(_title),
+          middle: const Text(_title),
           trailing: CupertinoButton(
             // 清除按钮
             child: const Icon(

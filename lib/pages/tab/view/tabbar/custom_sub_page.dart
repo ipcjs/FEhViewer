@@ -141,7 +141,7 @@ class _SubListViewState<T extends CustomSubListController>
                     color: CupertinoDynamicColor.resolve(
                         CupertinoColors.systemGrey, context),
                   ),
-                  Text(''),
+                  const Text(''),
                 ],
               ),
             ).autoCompressKeyboard(Get.context!),

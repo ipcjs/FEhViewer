@@ -212,7 +212,7 @@ class EhPrettyPrinter extends LogPrinter {
   String stringifyMessage(dynamic message) {
     if (message is Map || message is Iterable) {
       // var encoder = JsonEncoder.withIndent('  ');
-      var encoder = JsonEncoder.withIndent('');
+      var encoder = const JsonEncoder.withIndent('');
       return encoder.convert(message);
     } else {
       return message.toString();
@@ -262,7 +262,7 @@ class EhPrettyPrinter extends LogPrinter {
 
     if (error != null) {
       var errorColor = _getErrorColor(level);
-      for (var line in error.split('\n')) {
+      for (final line in error.split('\n')) {
         buffer.add(
           color('$verticalLine ') +
               errorColor.resetForeground +
@@ -274,18 +274,20 @@ class EhPrettyPrinter extends LogPrinter {
     }
 
     if (stacktrace != null) {
-      for (var line in stacktrace.split('\n')) {
+      for (final line in stacktrace.split('\n')) {
         buffer.add('$color$verticalLine $line');
       }
       buffer.add(color(_middleBorder));
     }
 
     if (time != null) {
-      buffer..add(color('$verticalLine $time'))..add(color(_middleBorder));
+      buffer
+        ..add(color('$verticalLine $time'))
+        ..add(color(_middleBorder));
     }
 
     var emoji = _getEmoji(level);
-    for (var line in message.split('\n')) {
+    for (final line in message.split('\n')) {
       buffer.add(color('$verticalLine $emoji$line'));
     }
     buffer.add(color(_bottomBorder));
