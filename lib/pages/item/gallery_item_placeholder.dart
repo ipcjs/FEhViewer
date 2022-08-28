@@ -34,29 +34,30 @@ class GalleryItemPlaceHolder extends StatelessWidget {
       ),
       padding: const EdgeInsets.only(right: kPaddingHorizontal),
       margin: const EdgeInsets.fromLTRB(10, 8, 10, 4),
-      child: IntrinsicHeight(
-        child: Row(
-          children: <Widget>[
-            // 封面图片
-            Column(
-              children: [
-                Expanded(
-                  child: ClipRRect(
+      child: Row(
+        children: <Widget>[
+          // 封面图片
+          Column(
+            children: [
+              Expanded(
+                child: Container(
+                  width: coverImageWidth,
+                  decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(kCardRadius),
-                    child: Container(
-                      width: coverImageWidth,
-                      color: CupertinoDynamicColor.resolve(
-                          CupertinoColors.systemGrey5, context),
-                    ),
+                    color: CupertinoDynamicColor.resolve(
+                        CupertinoColors.systemGrey5, context),
                   ),
                 ),
-              ],
-            ),
-            Container(
-              width: 8,
-            ),
-            // 右侧信息
-            Expanded(
+              ),
+            ],
+          ),
+          Container(
+            width: 8,
+          ),
+          // 右侧信息
+          Expanded(
+            child: Padding(
+              padding: const EdgeInsets.symmetric(vertical: 4),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
@@ -101,10 +102,10 @@ class GalleryItemPlaceHolder extends StatelessWidget {
                     ],
                   ),
                 ],
-              ).paddingSymmetric(vertical: 4),
+              ),
             ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
 

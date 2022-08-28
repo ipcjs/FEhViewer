@@ -127,15 +127,13 @@ class PlaceHolderLine extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       width: width,
-      child: ClipRRect(
+      decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(6),
-        child: Container(
-          color: CupertinoDynamicColor.resolve(
-              CupertinoColors.systemGrey5, context),
-          height: 16,
-        ),
-      ).paddingSymmetric(vertical: 4, horizontal: 4),
-    );
+        color:
+            CupertinoDynamicColor.resolve(CupertinoColors.systemGrey5, context),
+      ),
+      height: 16,
+    ).paddingSymmetric(vertical: 4, horizontal: 4);
   }
 }
 
